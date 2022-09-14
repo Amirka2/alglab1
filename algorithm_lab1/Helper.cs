@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -45,21 +46,28 @@ namespace algorithm_lab1
             string[] strArray = data.Split(" ");
             int rows = strArray.Length / 2;
             int[,] coordinates = new int[2, rows];
+
             for(int i = 0; i < rows; i++) {
                 coordinates[0, i] = i;
                 coordinates[1, i] = i* 2;
             }
 
-        return coordinates;
-    }
+            return coordinates;
+        }
 
-        static public void makeMeasure(Sort sort, String path)
+        static public long makeMeasure(Sort sort)
         {
-            //Instant start = Instant.now();
-            //int[] sortedArray = sort.sort();
-            //Instant end = Instant.now();
-            //Duration d = Duration.between(start, end);
-            //Helper.saveData(path, sort.array.length, d);
+            int ticksPerMicrosecond = 10;
+            Stopwatch stopWatch = new Stopwatch();
+
+            stopWatch.Start();
+            sort.Sorting();
+            stopWatch.Stop();
+
+            long ticks = stopWatch.ElapsedTicks;
+            long microseconds = ticks / ticksPerMicrosecond;
+
+            return microseconds;
         }
 
         public static int[] getRandomArray(int length)
@@ -83,6 +91,7 @@ namespace algorithm_lab1
             {
                 Console.Write(array[i] + ", ");
             }
+
             Console.WriteLine();
         }
     }
