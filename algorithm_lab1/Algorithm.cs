@@ -10,12 +10,19 @@ namespace algorithm_lab1
         }
         public Algorithm(int[] array)
         {
-            Array = array;
+            Array = (int[])array.Clone();
         }
 
         public virtual void Calculate()
         {
             Console.WriteLine("Parent's class method worked!");
+        }
+
+        protected void Swap(int i, int j)
+        {
+            int temp = Array[i];
+            Array[i] = Array[j];
+            Array[j] = temp;
         }
     }
 }
