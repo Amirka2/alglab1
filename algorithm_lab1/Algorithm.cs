@@ -10,7 +10,7 @@ namespace algorithm_lab1
         }
         public Algorithm(int[] array)
         {
-            Array = array;
+            Array = (int[])array.Clone();
         }
 
         public virtual void Calculate()
