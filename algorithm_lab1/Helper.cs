@@ -9,7 +9,7 @@ namespace algorithm_lab1
     {
         static public void saveData(string path, string data)
         {
-            using (StreamWriter sw = new StreamWriter(path))
+            using (StreamWriter sw = new(path))
             {
                 sw.WriteLine(data);
             }
@@ -17,8 +17,8 @@ namespace algorithm_lab1
 
         static public string getData(string path)
         {
-            StringBuilder sb = new StringBuilder();
-            using (StreamReader sr = new StreamReader(path))
+            StringBuilder sb = new();
+            using (StreamReader sr = new(path))
             {
                 while (sr.ReadLine() != null)
                 {
@@ -55,13 +55,13 @@ namespace algorithm_lab1
             return coordinates;
         }
 
-        static public long makeMeasure(Sort sort)
+        static public long makeMeasure(Algorithm algorithm)
         {
             int ticksPerMicrosecond = 10;
-            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new();
 
             stopWatch.Start();
-            sort.Sorting();
+            algorithm.Calculate();
             stopWatch.Stop();
 
             long ticks = stopWatch.ElapsedTicks;
@@ -73,7 +73,7 @@ namespace algorithm_lab1
         public static int[] getRandomArray(int length)
         {
             int[] arr = new int[length];
-            Random rnd = new Random();
+            Random rnd = new();
             int i = 0;
 
             while (i < length)

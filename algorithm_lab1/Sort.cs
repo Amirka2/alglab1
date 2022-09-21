@@ -8,7 +8,7 @@ namespace algorithm_lab1
 
         public Sort(int[] array)
         {
-            Array = array;
+            Array = (int[])array.Clone();
         }
 
         public int[] Sorting()

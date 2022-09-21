@@ -17,5 +17,12 @@ namespace algorithm_lab1
         {
             Console.WriteLine("Parent's class method worked!");
         }
+
+        protected void Swap(int i, int j)
+        {
+            int temp = Array[i];
+            Array[i] = Array[j];
+            Array[j] = temp;
+        }
     }
 }
