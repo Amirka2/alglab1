@@ -11,9 +11,13 @@ namespace algorithm_lab1
             BubbleSort bS = new(arr);
             QuickSort qS = new(arr);
             TimSort tS = new(arr);
+            InsertionSort iS = new(arr);
+
             //bS.Calculate();
             //qS.Calculate();
             //tS.Calculate();
+            tS.Calculate();
+            //iS.Calculate();
 
             //foreach (int el in bS.Array)
             //{
@@ -26,6 +30,11 @@ namespace algorithm_lab1
             //    Console.Write(el);
             //}
             //Console.WriteLine("quicksort");
+
+            foreach (int el in tS.Array)
+            {
+                Console.Write(el + ", ");
+            }
         }
     }
 }
