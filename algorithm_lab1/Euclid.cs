@@ -3,7 +3,8 @@ namespace algorithm_lab1
 {
     public class Euclid
     {
-        int EuclidAlg(int val1, int val2)
+        public static int Result { get; private set; }
+        public static int EuclidAlg(int val1, int val2)
         {
             while ((val1 != 0) && (val2 != 0))
             {
@@ -13,7 +14,9 @@ namespace algorithm_lab1
                     val2 -= val1;
             }
 
-            return Math.Max(val1, val2);
+            int result = Math.Max(val1, val2);
+            Result = result;
+            return result;
         }
     }
 }

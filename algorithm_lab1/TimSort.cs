@@ -3,20 +3,14 @@ namespace algorithm_lab1
 {
     public class TimSort : Algorithm
     {
-        private int[] Data;
-        public TimSort(int[] data)
+        public TimSort(int[] array) : base(array)
         {
-            this.Data = data;
-        }
-        public void InputData(int[] data)
-        {
-            this.Data = data;
         }
         public override void Calculate()
         {
-            int[] arr = Data;
-            int n = Data.Length;
-            int RUN = GetMinrun(Data.Length);
+            int[] arr = Array;
+            int n = Array.Length;
+            int RUN = GetMinrun(Array.Length);
             // Sort individual subarrays of size RUN
             for (int i = 0; i < n; i += RUN)
                 InsertionSort(arr, i, Math.Min((i + RUN - 1), (n - 1)));

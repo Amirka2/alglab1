@@ -7,6 +7,11 @@ namespace algorithm_lab1
         {
         }
 
+        public override void Calculate()
+        {
+            GornerAlg();
+        }
+
         public double GornerAlg(int i = 0)
         {
             double x = 1.5;

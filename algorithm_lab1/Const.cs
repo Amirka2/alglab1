@@ -9,7 +9,7 @@ namespace algorithm_lab1
 
         public override void Calculate()
         {
-            Console.Write("1");
+            Console.Write("");
         }
     }
 }

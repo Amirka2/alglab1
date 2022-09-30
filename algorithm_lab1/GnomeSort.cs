@@ -7,6 +7,11 @@ namespace algorithm_lab1
         {
         }
 
+        public override void Calculate()
+        {
+            GnomeSortAlg(Array);
+        }
+
         public void GnomeSortAlg(int[] inArray)
         {
             int i = 1;

@@ -41,42 +41,77 @@ namespace algorithm_lab1
             }
         }
 
-        static public int[,] FormatXandY(string data) // time and n
+        static public long[,] FormatXandY(string data) // time and n
         {
             string[] strArray = data.Split(" ");
             int rows = strArray.Length / 2;
-            int[,] coordinates = new int[rows, 2];
+            long[,] coordinates = new long[rows, 2];
 
             for(int i = 0; i < rows; i++)
             {
-                coordinates[i, 0] = Int32.Parse(strArray[i * 2]);
-                coordinates[i, 1] = Int32.Parse(strArray[i * 2 + 1]);
+                coordinates[i, 0] = Int64.Parse(strArray[i * 2]);
+                coordinates[i, 1] = Int64.Parse(strArray[i * 2 + 1]);
             }
 
             return coordinates;
         }
 
-        static public void CreateCSVFile(string path, int[,] coordinates)
+        static public long[,] FormatMatrixData(string data) // n, m and time
         {
-            using (StreamWriter sw = new(path))
+            string[] strArray = data.Split(" ");
+            int rows = strArray.Length / 3;
+            long[,] coordinates = new long[rows, 3];
+
+            for (int i = 0; i < rows; i++)
             {
+                coordinates[i, 0] = Int64.Parse(strArray[i * 2]);
+                coordinates[i, 1] = Int64.Parse(strArray[i * 2 + 1]);
+                coordinates[i, 2] = Int64.Parse(strArray[i * 2 + 2]);
+            }
+
+            return coordinates;
+        }
+
+        static public void CreateCSVFile(string path, long[,] coordinates, bool append)
+        {
+            using StreamWriter sw = new(path, append);
+            int columns = coordinates.GetUpperBound(1) + 1;
+            int rows = coordinates.Length / columns;
+
+            if (columns == 3)
+                sw.WriteLine("n;m;time;");
+            else
                 sw.WriteLine("n;time;");
-                int columns = coordinates.GetLength(0) + 1;
-                int rows = coordinates.Length / columns;
-                for (int i = 0; i < rows; i++)
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
                 {
-                    for (int j = 0; j < columns; j++)
-                    {
-                        sw.Write(coordinates[i,j] + ";");
-                    }
-                    Console.WriteLine();
+                    sw.Write(coordinates[i, j] + ";");
                 }
+                Console.WriteLine();
+            }
+        }
+        static public void CreateCSVFile(string path, long[,] coordinates)
+        {
+            using StreamWriter sw = new(path, true);
+            int columns = coordinates.GetUpperBound(1) + 1;
+            int rows = coordinates.Length / columns;
+
+            sw.WriteLine();
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    sw.Write(coordinates[i, j] + ";");
+                }
+                Console.WriteLine();
             }
         }
 
-        static public int MakeMeasure(Algorithm algorithm, int n, int step)
+        static public long MakeMeasure(Algorithm algorithm)
         {
-            int ticksPerMicrosecond = 10;
+            long ticksPerMicrosecond = 10L;
             Stopwatch stopWatch = new();
 
             stopWatch.Start();
@@ -84,7 +119,22 @@ namespace algorithm_lab1
             stopWatch.Stop();
             
             long ticks = stopWatch.ElapsedTicks;
-            int microseconds = (int)ticks / ticksPerMicrosecond;
+            long microseconds = ticks / ticksPerMicrosecond;
+
+            return microseconds;
+        }
+
+        static public long MakeMeasureForEuclid(int a, int b)
+        {
+            long ticksPerMicrosecond = 10L;
+            Stopwatch stopWatch = new();
+
+            stopWatch.Start();
+            Euclid.EuclidAlg(a, b);
+            stopWatch.Stop();
+
+            long ticks = stopWatch.ElapsedTicks;
+            long microseconds = ticks / ticksPerMicrosecond;
 
             return microseconds;
         }
@@ -102,6 +152,22 @@ namespace algorithm_lab1
             }
 
             return arr;
+        }
+
+        public static int[,] GetRandomMatrix(int i, int j)
+        {            
+            int[,] matrix = new int[i, j];
+            Random rnd = new();
+
+            for(int row = 0; row < i; row++)
+            {
+                for(int col = 0; col < j; col++)
+                {
+                    matrix[row, col] = rnd.Next(0, 100);
+                }
+            }
+
+            return matrix;
         }
 
         public static void PrintArray(int[] array)
