@@ -9,34 +9,57 @@ namespace algorithm_lab1
 
         public override void Calculate()
         {
-            QuickSorting(0, Array.Length - 1);
+            QuickSorting(Array, 0, Array.Length - 1);
         }
-        private void QuickSorting(int left, int right)
+        private static void QuickSorting(int[] arr, int left, int right)
         {
-            if(left < right)
+            if (left < right)
             {
-                int q = Partition(left, right);
-                QuickSorting(left, q);
-                QuickSorting(q + 1, right);
-            }
-        }
-        private int Partition(int left, int right)
-        {
-            int delim = Array[(left + right) / 2];
-            int i = left;
-            int j = right;
+                int pivot = Partition(arr, left, right);
 
-            while(i <= j)
-            {
-                while(Array[i] < delim)
-                    i++;
-                while (Array[j] > delim)
-                    j--;
-                if (i >= j)
-                    break;
-                Swap(i, j);
+                if (pivot > 1)
+                {
+                    QuickSorting(arr, left, pivot - 1);
+                }
+                if (pivot + 1 < right)
+                {
+                    QuickSorting(arr, pivot + 1, right);
+                }
             }
-            return j;
+
+        }
+
+        private static int Partition(int[] arr, int left, int right)
+        {
+            int pivot = arr[left];
+            while (true)
+            {
+
+                while (arr[left] < pivot)
+                {
+                    left++;
+                }
+
+                while (arr[right] > pivot)
+                {
+                    right--;
+                }
+
+                if (left < right)
+                {
+                    if (arr[left] == arr[right]) return right;
+
+                    int temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+
+
+                }
+                else
+                {
+                    return right;
+                }
+            }
         }
     }
 }

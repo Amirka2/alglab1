@@ -6,18 +6,96 @@ namespace algorithm_lab1
     {
         private static void Main(string[] args)
         {
-            //int x = 2, n = 4;                     //степени
+            //int x = 2, n = 2;                     //степени
             //MeasureAllSteps(x, n, 1000);
 
             //MeasureAllMatrixes(10, 15, 10, 50);   //матрицы
 
             //MeasureAllAlgorithms();               //все сортировки и сум/умножение
 
+            //MeasureQuickSort();                   //quicksort
+
             //MeasureEuclid("euclidData.csv", false);
             //for(int i = 0; i < 1000; i++)
             //{
             //    MeasureEuclid("euclidData.csv", true);
             //}
+        }
+
+        public static void MeasureQuickSort() {
+            int[] array = Helper.GetRandomArray(10);
+            int[] array0 = Helper.GetRandomArray(100);
+            int[] array1 = Helper.GetRandomArray(1000);
+            int[] array2 = Helper.GetRandomArray(2000);
+            int[] array3 = Helper.GetRandomArray(3000);
+            int[] array4 = Helper.GetRandomArray(4000);
+            int[] array5 = Helper.GetRandomArray(5000);
+            int[] array6 = Helper.GetRandomArray(6000);
+            int[] array7 = Helper.GetRandomArray(7000);
+            int[] array8 = Helper.GetRandomArray(8000);
+            int[] array9 = Helper.GetRandomArray(9000);
+            int[] array10 = Helper.GetRandomArray(10000);
+            int[] array11 = Helper.GetRandomArray(20000);
+            int[] array12 = Helper.GetRandomArray(30000);
+            int[] array13 = Helper.GetRandomArray(40000);
+            int[] array14 = Helper.GetRandomArray(50000);
+            int[] array15 = Helper.GetRandomArray(100000);
+
+
+
+            QuickSort qS = new(array);
+            MeasureAndWriteData(qS, "quickSortData.csv", false);
+
+            qS = new(array);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array0);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array1);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array2);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array3);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array4);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array5);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array6);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array7);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array8);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array9);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array10);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array11);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array12);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array13);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array14);
+            MeasureAndWriteData(qS, "quickSortData.csv");
+
+            qS = new(array15);
+            MeasureAndWriteData(qS, "quickSortData.csv");
         }
 
         public static void MeasureEuclid(string path, bool append)
@@ -55,20 +133,20 @@ namespace algorithm_lab1
 
             for(int i = 1; i < iter; i++)
             {
-                ex = new(x + i, n + i);
-                ex.Pow(x + i, n + i);
+                ex = new(x, n + i);
+                ex.Pow(x, n + i);
                 MeasureAndWriteExpData(ex, "powStandartData.csv", true);
 
-                ex = new(x + i, n + i);
-                ex.RecPow(x + i, n + i);
+                ex = new(x, n + i);
+                ex.RecPow(x, n + i);
                 MeasureAndWriteExpData(ex, "powRecursiveData.csv", true);
 
-                ex = new(x + i, n + i);
-                ex.QuickPow(x + i, n + i);
+                ex = new(x, n + i);
+                ex.QuickPow(x, n + i);
                 MeasureAndWriteExpData(ex, "powQuickData.csv", true);
 
-                ex = new(x + i, n + i);
-                ex.ClassicQuickPow(x + i, n + i);
+                ex = new(x, n + i);
+                ex.ClassicQuickPow(x, n + i);
                 MeasureAndWriteExpData(ex, "powClassicQuickData.csv", true);
             }
 
@@ -111,7 +189,6 @@ namespace algorithm_lab1
             multiplier = new(array1);
             gornerMethod = new(array1);
             bS = new(array1);
-            qS = new(array1);
             tS = new(array1);
             gS = new(array1);
 
