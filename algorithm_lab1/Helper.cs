@@ -89,7 +89,7 @@ namespace algorithm_lab1
                 {
                     sw.Write(coordinates[i, j] + ";");
                 }
-                Console.WriteLine();
+                sw.WriteLine();
             }
         }
         static public void CreateCSVFile(string path, long[,] coordinates)
@@ -98,14 +98,13 @@ namespace algorithm_lab1
             int columns = coordinates.GetUpperBound(1) + 1;
             int rows = coordinates.Length / columns;
 
-            sw.WriteLine();
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
                     sw.Write(coordinates[i, j] + ";");
                 }
-                Console.WriteLine();
+                sw.WriteLine();
             }
         }
 
@@ -139,6 +138,22 @@ namespace algorithm_lab1
             return microseconds;
         }
 
+        public static int[][] GetRandomArrays(int length)
+        {
+            int[][] arr = new int[length][];
+            Random rnd = new();
+
+            for(int i = 0; i < length; i++)
+            {
+                arr[i] = new int[i];
+                for (int j = 0; j < i; j++)
+                {
+                    arr[i][j] = rnd.Next(0, 1000);
+                }
+            }
+
+            return arr;
+        }
         public static int[] GetRandomArray(int length)
         {
             int[] arr = new int[length];
@@ -169,6 +184,103 @@ namespace algorithm_lab1
 
             return matrix;
         }
+
+        public static void CalculateAndWriteAverages(string path, int valuesAmount)
+        {
+            string resultData = GetAverageValues(path, valuesAmount).ToString();
+            DeleteData(path);
+            SaveData(path, resultData);
+            long[,] coordinates = FormatXandY(path);
+            CreateCSVFile(path, coordinates);
+        }
+
+        public static StringBuilder GetAverageValues(string path, int valuesAmount)
+        {
+            string input = GetString(path);
+            string[] pairs = input.Split(';');
+            StringBuilder results = new StringBuilder();
+
+            for(int i = 2; i < valuesAmount * 2 - 1; i += 2)
+            {
+                int n = i;
+                long averageTime = 0;
+                for(int k = 0; k < 5; k++)
+                {
+                    long time = Int64.Parse(pairs[i + 1 + valuesAmount * k]);
+                    averageTime += time;
+                }
+                averageTime /= 5;
+
+                results.AppendLine($"{n};{averageTime};");
+            }
+
+            return results;
+        }
+
+        public static string GetString(string path)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            using StreamReader streamReader = new StreamReader(path);
+            streamReader.ReadLine();
+
+            while (streamReader.ReadLine() != null)
+            {
+                stringBuilder.AppendLine(streamReader.ReadLine());
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static void MakeMatrixTable(string path, int n, int m)
+        {
+            string[][] data = GetStringData(path, n, m);
+            using (StreamWriter streamWriter = new StreamWriter("table" + path))
+            {
+                streamWriter.Write(" ;");
+                for(int i = 1; i <= m; i++)
+                {
+                    streamWriter.Write(i + ";");
+                }
+                streamWriter.WriteLine();
+                for(int i = 1; i <= n; i++)
+                {
+                    streamWriter.Write(i + ";");
+                    for(int j = 1; j <= m; j++)
+                    {
+                        streamWriter.Write(data[i - 1][j - 1] + ";");
+                    }
+                    streamWriter.WriteLine();
+                }
+            }
+        }
+
+        private static string[][] GetStringData(string path, int n, int m)
+        {
+            string[][] data = new string[m][];
+            
+            using (StreamReader sR = new StreamReader(path))
+            {
+                sR.ReadLine();
+                sR.ReadLine();
+                for (int i = 1; i <= m; i++)
+                {
+                    string[] time = new string[n];
+                    for (int j = 1; j <= n; j++)
+                    {
+                        string temp = sR.ReadLine();
+                        if (temp != null)
+                        {
+                            var x = temp.Split(';');
+                            time[j - 1] = x[2];
+                        }
+                    }
+
+                    data[i - 1] = time;
+                }
+            }
+
+                return data;
+            }
 
         public static void PrintArray(int[] array)
         {

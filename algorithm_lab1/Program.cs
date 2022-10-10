@@ -6,113 +6,247 @@ namespace algorithm_lab1
     {
         private static void Main(string[] args)
         {
+            int n = 1000000;
+            int m = n * 5;
+
+            MeasureConst(n);
+            //Helper.CalculateAndWriteAverages("constData.csv", n);
+
+            //MeasureSummator(n);
+            //Helper.CalculateAndWriteAverages("summatorData.csv", n);
+
+            //MeasureMultiplier(n);
+            //Helper.CalculateAndWriteAverages("multiplierData.csv", n);
+
+            //MeasureGorner(n);
+            //Helper.CalculateAndWriteAverages("gornerData.csv", n + 20000);
+
+            //MeasureBubbleSort(n);
+            //Helper.CalculateAndWriteAverages("bubbleSortData.csv", n);
+
+            //MeasureQuickSort(n);
+            //Helper.CalculateAndWriteAverages("quickSortData.csv", n);
+
+            //MeasureTimSort(n * 2);
+            //Helper.CalculateAndWriteAverages("timSortData.csv", n * 2);
             //int x = 2, n = 2;                     //степени
             //MeasureAllSteps(x, n, 1000);
 
-            //MeasureAllMatrixes(10, 15, 10, 50);   //матрицы
+            //int[,] arr1 = Helper.GetRandomMatrix(1, 1);
+            //int[,] arr2 = Helper.GetRandomMatrix(1, 1);
 
-            //MeasureAllAlgorithms();               //все сортировки и сум/умножение
+            //Matrix m1 = new(arr1);
+            //Matrix m2 = new(arr2);
 
-            //MeasureQuickSort();                   //quicksort
+            //MatrixMultiplier matrixMultiplier = new(m1, m2);
+            //MeasureAndWriteMatrixData(matrixMultiplier, "matrixesData.csv", false);
 
-            //MeasureEuclid("euclidData.csv", false);
-            //for(int i = 0; i < 1000; i++)
+            //for (int i = 1; i <= 100; i++)
             //{
-            //    MeasureEuclid("euclidData.csv", true);
+            //    MeasureAllMatrixes(i, 1, 1, 100);
             //}
+
+            //MeasureGnomeSort(10000);
+            //MeasureFibonachi(n);
+            //MeasureEuclid(1000);
+            //Helper.MakeMatrixTable("matrixesData.csv", 100, 100);
         }
 
-        public static void MeasureQuickSort() {
-            int[] array = Helper.GetRandomArray(10);
-            int[] array0 = Helper.GetRandomArray(100);
-            int[] array1 = Helper.GetRandomArray(1000);
-            int[] array2 = Helper.GetRandomArray(2000);
-            int[] array3 = Helper.GetRandomArray(3000);
-            int[] array4 = Helper.GetRandomArray(4000);
-            int[] array5 = Helper.GetRandomArray(5000);
-            int[] array6 = Helper.GetRandomArray(6000);
-            int[] array7 = Helper.GetRandomArray(7000);
-            int[] array8 = Helper.GetRandomArray(8000);
-            int[] array9 = Helper.GetRandomArray(9000);
-            int[] array10 = Helper.GetRandomArray(10000);
-            int[] array11 = Helper.GetRandomArray(20000);
-            int[] array12 = Helper.GetRandomArray(30000);
-            int[] array13 = Helper.GetRandomArray(40000);
-            int[] array14 = Helper.GetRandomArray(50000);
-            int[] array15 = Helper.GetRandomArray(100000);
+        public static void MeasureConst(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
 
+            Const con = new(arrays[0]);
+            MeasureAndWriteData(con, "constData.csv", false);
 
+            for (int i = 100; i <= n; i += 100)
+            {
+                con = new(arrays[i]);
+                MeasureAndWriteData(con, "constData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementConst(arrays, n);
+            }
+        }
+        public static void SupplementConst(int[][] arrays, int n)
+        {
+            Const con = new(arrays[0]);
 
-            QuickSort qS = new(array);
+            for (int i = 100; i <= n; i += 100)
+            {
+                con = new(arrays[i]);
+                MeasureAndWriteData(con, "constData.csv");
+            }
+        }
+
+        public static void MeasureSummator(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            Summator summator = new(arrays[0]);
+            MeasureAndWriteData(summator, "summatorData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                summator = new(arrays[i]);
+                MeasureAndWriteData(summator, "summatorData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementTimSort(arrays, n);
+            }
+        }
+        public static void SupplementSummator(int[][] arrays, int n)
+        {
+            Summator summator = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                summator = new(arrays[i]);
+                MeasureAndWriteData(summator, "summatorData.csv");
+            }
+        }
+
+        public static void MeasureMultiplier(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            Multiplier multiplier = new(arrays[0]);
+            MeasureAndWriteData(multiplier, "multiplierData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                multiplier = new(arrays[i]);
+                MeasureAndWriteData(multiplier, "multiplierData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementMultiplier(arrays, n);
+            }
+        }
+        public static void SupplementMultiplier(int[][] arrays, int n)
+        {
+            Multiplier multiplier = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                multiplier = new(arrays[i]);
+                MeasureAndWriteData(multiplier, "multiplierData.csv");
+            }
+        }
+
+        public static void MeasureGorner(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            GornerMethod gorner = new(arrays[0]);
+            MeasureAndWriteData(gorner, "gornerData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                gorner = new(arrays[i]);
+                MeasureAndWriteData(gorner, "gornerData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementGorner(arrays, n);
+            }
+        }
+        public static void SupplementGorner(int[][] arrays, int n)
+        {
+            GornerMethod gorner = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                gorner = new(arrays[i]);
+                MeasureAndWriteData(gorner, "gornerData.csv");
+            }
+        }
+
+        public static void MeasureQuickSort(int n) {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            QuickSort qS = new(arrays[0]);
             MeasureAndWriteData(qS, "quickSortData.csv", false);
 
-            qS = new(array);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array0);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array1);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array2);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array3);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array4);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array5);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array6);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array7);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array8);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array9);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array10);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array11);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array12);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array13);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array14);
-            MeasureAndWriteData(qS, "quickSortData.csv");
-
-            qS = new(array15);
-            MeasureAndWriteData(qS, "quickSortData.csv");
+            for (int i = 100; i <= n; i += 100)
+            {
+                qS = new(arrays[i]);
+                MeasureAndWriteData(qS, "quickSortData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementQuickSort(arrays, n);
+            }
         }
-
-        public static void MeasureEuclid(string path, bool append)
+        public static void SupplementQuickSort(int[][] arrays, int n)
         {
-            Random rnd = new();
-            int a = rnd.Next(1, 100000);
-            int b = rnd.Next(1, 100000);
+            QuickSort qS = new(arrays[0]);
 
-            long microseconds = Helper.MakeMeasureForEuclid(a, b);
-            string data = $"{a} {b} {microseconds}";
-            long[,] coordinates = Helper.FormatMatrixData(data);
-
-            if (append)
-                Helper.CreateCSVFile(path, coordinates);
-            else
-                Helper.CreateCSVFile(path, coordinates, append);
+            for (int i = 100; i <= n; i += 100)
+            {
+                qS = new(arrays[i]);
+                MeasureAndWriteData(qS, "quickSortData.csv");
+            }
         }
+
+        public static void MeasureBubbleSort(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            BubbleSort bS = new(arrays[0]);
+            MeasureAndWriteData(bS, "bubbleSortData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                bS = new(arrays[i]);
+                MeasureAndWriteData(bS, "bubbleSortData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementBubbleSort(arrays, n);
+            }
+        }
+        public static void SupplementBubbleSort(int[][] arrays, int n)
+        {
+            BubbleSort bS = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                bS = new(arrays[i]);
+                MeasureAndWriteData(bS, "bubbleSortData.csv");
+            }
+        }
+
+        public static void MeasureTimSort(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            TimSort timSort = new(arrays[0]);
+            MeasureAndWriteData(timSort, "timSortData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                timSort = new(arrays[i]);
+                MeasureAndWriteData(timSort, "timSortData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementTimSort(arrays, n);
+            }
+        }
+        public static void SupplementTimSort(int[][] arrays, int n)
+        {
+            TimSort timSort = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                timSort = new(arrays[i]);
+                MeasureAndWriteData(timSort, "timSortData.csv");
+            }
+        }
+
         public static void MeasureAllSteps(int x, int n, int iter)
         {
             Exponentiation ex = new(x, n);
@@ -131,7 +265,16 @@ namespace algorithm_lab1
             ex.ClassicQuickPow(x, n);
             MeasureAndWriteExpData(ex, "powClassicQuickData.csv", false);
 
-            for(int i = 1; i < iter; i++)
+            for(int i = 0; i < 5; i++)
+            {
+                //SupplementSteps(x, n, iter);
+            }
+        }
+        public static void SupplementSteps(int x, int n, int iter)
+        {
+            Exponentiation ex = new(x, n);
+
+            for (int i = 1; i < iter; i++)
             {
                 ex = new(x, n + i);
                 ex.Pow(x, n + i);
@@ -149,176 +292,8 @@ namespace algorithm_lab1
                 ex.ClassicQuickPow(x, n + i);
                 MeasureAndWriteExpData(ex, "powClassicQuickData.csv", true);
             }
-
         }
-        public static void MeasureAllAlgorithms()
-        {
-            int[] array = Helper.GetRandomArray(1000);
-            int[] array1 = Helper.GetRandomArray(10000);
-            int[] array2 = Helper.GetRandomArray(15000);
-            int[] array3 = Helper.GetRandomArray(20000);
-            int[] array4 = Helper.GetRandomArray(25000);
-            int[] array5 = Helper.GetRandomArray(30000);
-            int[] array6 = Helper.GetRandomArray(35000);
-            int[] array7 = Helper.GetRandomArray(45000);
-            int[] array8 = Helper.GetRandomArray(50000);
 
-
-
-            Const constant = new(array);
-            Summator summator = new(array);
-            Multiplier multiplier = new(array);
-            GornerMethod gornerMethod = new(array);
-            BubbleSort bS = new(array);
-            QuickSort qS = new(array);
-            TimSort tS = new(array);
-            GnomeSort gS = new(array);
-            //Fibonachi fibonachi = new(array); //использует длину массива как н
-
-            MeasureAndWriteData(constant, "constData.csv", false);
-            MeasureAndWriteData(summator, "summatorData.csv", false);
-            MeasureAndWriteData(multiplier, "multiplierData.csv", false);
-            MeasureAndWriteData(gornerMethod, "gornerData.csv", false);
-            MeasureAndWriteData(bS, "bubbleSortData.csv", false);
-            MeasureAndWriteData(tS, "timSortData.csv", false);
-            MeasureAndWriteData(gS, "gnomeSortData.csv", false);
-
-
-            constant = new(array1);
-            summator = new(array1);
-            multiplier = new(array1);
-            gornerMethod = new(array1);
-            bS = new(array1);
-            tS = new(array1);
-            gS = new(array1);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array2);
-            summator = new(array2);
-            multiplier = new(array2);
-            gornerMethod = new(array2);
-            bS = new(array2);
-            tS = new(array2);
-            gS = new(array2);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array3);
-            summator = new(array3);
-            multiplier = new(array3);
-            gornerMethod = new(array3);
-            bS = new(array3);
-            tS = new(array3);
-            gS = new(array3);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array4);
-            summator = new(array4);
-            multiplier = new(array4);
-            gornerMethod = new(array4);
-            bS = new(array4);
-            tS = new(array4);
-            gS = new(array4);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array5);
-            summator = new(array5);
-            multiplier = new(array5);
-            gornerMethod = new(array5);
-            bS = new(array5);
-            tS = new(array5);
-            gS = new(array5);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array6);
-            summator = new(array6);
-            multiplier = new(array6);
-            gornerMethod = new(array6);
-            bS = new(array6);
-            tS = new(array6);
-            gS = new(array6);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array7);
-            summator = new(array7);
-            multiplier = new(array7);
-            gornerMethod = new(array7);
-            bS = new(array7);
-            tS = new(array7);
-            gS = new(array7);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-
-
-            constant = new(array8);
-            summator = new(array8);
-            multiplier = new(array8);
-            gornerMethod = new(array8);
-            bS = new(array8);
-            tS = new(array8);
-            gS = new(array8);
-
-            MeasureAndWriteData(constant, "constData.csv");
-            MeasureAndWriteData(summator, "summatorData.csv");
-            MeasureAndWriteData(multiplier, "multiplierData.csv");
-            MeasureAndWriteData(gornerMethod, "gornerData.csv");
-            MeasureAndWriteData(bS, "bubbleSortData.csv");
-            MeasureAndWriteData(tS, "timSortData.csv");
-            MeasureAndWriteData(gS, "gnomeSortData.csv");
-        }
         public static void MeasureAllMatrixes(int n, int m, int step, int iter)
         {
             int[,] arr1 = Helper.GetRandomMatrix(n, m);
@@ -328,12 +303,11 @@ namespace algorithm_lab1
             Matrix m2 = new(arr2);
 
             MatrixMultiplier matrixMultiplier = new(m1, m2);
-            MeasureAndWriteMatrixData(matrixMultiplier, "matrixesData.csv", false);
+            MeasureAndWriteMatrixData(matrixMultiplier, "matrixesData.csv", true);
 
 
             for(int i = 0; i < iter - 1; i++)
             {
-                n += step;
                 m += step;
 
                 arr1 = Helper.GetRandomMatrix(n, m);
@@ -345,7 +319,113 @@ namespace algorithm_lab1
                 matrixMultiplier = new(m1, m2);
                 MeasureAndWriteMatrixData(matrixMultiplier, "matrixesData.csv", true);
             }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    throw new Exception("matrixes need fix");
+            //    SupplementMatrixes();
+            //}
         }
+        public static void SupplementMatrixes(int[][] arrays, int n)
+        {
+
+        }
+
+        public static void MeasureFibonachi(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            Fibonachi fibonachi = new(arrays[0]);
+            MeasureAndWriteData(fibonachi, "fibonachiData.csv", false);
+
+            for (int i = 1; i < n; i++)
+            {
+                fibonachi = new(arrays[i]);
+                MeasureAndWriteData(fibonachi, "fibonachiData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementFibonachi(arrays, n);
+            }
+        }
+        public static void SupplementFibonachi(int[][] arrays, int n)
+        {
+            Fibonachi fibonachi = new(arrays[0]);
+
+            for (int i = 1; i < n; i++)
+            {
+                fibonachi = new(arrays[i]);
+                MeasureAndWriteData(fibonachi, "fibonachiData.csv");
+            }
+        }
+
+        public static void MeasureEuclid(int n = 10000)
+        {
+            int a, b;
+            for (int i = 10; i <= n; i += 10)
+            {
+                for (int j = 10; j <= n; j += 10)
+                {
+                    a = i;
+                    b = j;
+                    long microseconds = Helper.MakeMeasureForEuclid(a, b);
+                    string data = $"{a} {b} {microseconds}";
+                    long[,] coordinates = Helper.FormatMatrixData(data);
+                    Helper.CreateCSVFile("euclidData.csv", coordinates);
+                }
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementEuclid(n);
+            }
+        }
+        public static void SupplementEuclid(int n)
+        {
+            int a, b;
+            for (int i = 10; i <= n; i += 10)
+            {
+                for (int j = 10; j <= n; j += 10)
+                {
+                    a = i;
+                    b = j;
+                    long microseconds = Helper.MakeMeasureForEuclid(a, b);
+                    string data = $"{a} {b} {microseconds}";
+                    long[,] coordinates = Helper.FormatMatrixData(data);
+                    Helper.CreateCSVFile("euclidData.csv", coordinates);
+                }
+            }
+        }
+
+        public static void MeasureGnomeSort(int n)
+        {
+            int[][] arrays = Helper.GetRandomArrays(n);
+
+            GnomeSort gnomeSort = new(arrays[0]);
+            MeasureAndWriteData(gnomeSort, "gnomeSortData.csv", false);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                gnomeSort = new(arrays[i]);
+                MeasureAndWriteData(gnomeSort, "gnomeSortData.csv");
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                //SupplementGnomeSort(arrays, n);
+            }
+        }
+        public static void SupplementGnomeSort(int[][] arrays, int n)
+        {
+            GnomeSort gnomeSort = new(arrays[0]);
+
+            for (int i = 100; i <= n; i += 100)
+            {
+                gnomeSort = new(arrays[i]);
+                MeasureAndWriteData(gnomeSort, "gnomeSortData.csv");
+            }
+        }
+
+
+
+
 
         public static void MeasureAndWriteExpData(Exponentiation ex, string path, bool append)
         {

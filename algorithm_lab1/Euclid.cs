@@ -3,6 +3,9 @@ namespace algorithm_lab1
 {
     public class Euclid
     {
+        public Euclid(int[] arr)
+        {
+        }
         public static int Result { get; private set; }
         public static int EuclidAlg(int val1, int val2)
         {
